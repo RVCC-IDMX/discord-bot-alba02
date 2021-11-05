@@ -14,26 +14,38 @@ client.on('ready', () => {
 client.on('messageCreate', (message) => {
   // Ping
   if (message.content === 'ping') {
-    message.reply({
-      content: 'pong',
-    });
+    // React to a message with a unicode emoji
+    message.react('🤔').then(console.log).catch(console.error);
+    message
+      .reply({
+        content: 'pong',
+      })
+      .then(() => console.log(`Replied to message "${message.content}"`))
+      .catch(console.error);
   }
 
   // Cowsay
-  let output: string = cowsay.say({
-    text: 'Hello from typescript!',
-    e: 'oO',
-    T: 'U ',
-  });
-  console.log(output);
+
   if (message.content === 'cowsay') {
-    message.reply({
-      content: `
+    // React to a message with a unicode emoji
+    message.react('🐱').then(console.log).catch(console.error);
+    //reply to message
+    let output: string = cowsay.say({
+      text: 'Hello from typescript!',
+      e: 'oO',
+      T: 'U ',
+    });
+    console.log(output);
+    message
+      .reply({
+        content: `
     \`\`\`
     ${output}
     \`\`\`
       `,
-    });
+      })
+      .then(() => console.log(`Replied to message "${message.content}"`))
+      .catch(console.error);
   }
 });
 
