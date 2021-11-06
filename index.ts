@@ -42,9 +42,9 @@ client.on('messageCreate', (message) => {
 
     let opts: IOptions = {
       text: 'Hello from Typescript!',
-      e: 'oo',
-      f: 'hellokitty',
-      //r: true,
+      //e: 'oo',
+      //f: 'mona-lisa',
+      r: true,
     };
 
     let output: string = cowsay.say(opts);
@@ -58,7 +58,11 @@ client.on('messageCreate', (message) => {
       `,
       })
       .then(() => console.log(`Replied to message "${message.content}"`))
-      .catch(console.error);
+      .catch((error) => {
+        if (output.length > 2000) {
+          message.reply(cowsay.say({ text: 'Bye, bye!' }));
+        }
+      });
   }
 });
 
