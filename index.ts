@@ -41,10 +41,10 @@ client.on('messageCreate', (message) => {
     //reply to message
 
     let opts: IOptions = {
-      text: 'Hello from Type!',
-      e: 'xx',
+      text: 'Hello from Typescript!',
+      e: 'oo',
       f: 'hellokitty',
-      // r: true,
+      //r: true,
     };
 
     let output: string = cowsay.say(opts);
