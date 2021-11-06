@@ -1,6 +1,9 @@
 import DiscordJS, { Intents, Message } from 'discord.js';
 import dotenv from 'dotenv';
 import * as cowsay from 'cowsay';
+
+import { IOptions } from 'cowsay'; // optional
+
 dotenv.config();
 
 const client = new DiscordJS.Client({
@@ -15,7 +18,10 @@ client.on('messageCreate', (message) => {
   // Ping
   if (message.content === 'ping') {
     // React to a message with a unicode emoji
-    message.react('🤔').then(console.log).catch(console.error);
+    message
+      .react('🍒')
+      .then(() => console.log(`Reacted to message "${message.content}"`))
+      .catch(console.error);
     message
       .reply({
         content: 'pong',
@@ -28,13 +34,20 @@ client.on('messageCreate', (message) => {
 
   if (message.content === 'cowsay') {
     // React to a message with a unicode emoji
-    message.react('🐱').then(console.log).catch(console.error);
+    message
+      .react('🐱')
+      .then(() => console.log(`Reacted to message "${message.content}"`))
+      .catch(console.error);
     //reply to message
-    let output: string = cowsay.say({
-      text: 'Hello from typescript!',
-      e: 'oO',
-      T: 'U ',
-    });
+
+    let opts: IOptions = {
+      text: 'Hello from Type!',
+      e: 'xx',
+      f: 'hellokitty',
+      // r: true,
+    };
+
+    let output: string = cowsay.say(opts);
     console.log(output);
     message
       .reply({
