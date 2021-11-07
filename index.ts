@@ -1,8 +1,6 @@
 import DiscordJS, { Intents, Message } from 'discord.js';
 import dotenv from 'dotenv';
-import * as cowsay from 'cowsay';
-
-import { IOptions } from 'cowsay'; // optional
+import cowsay from './utils/cowsay';
 
 dotenv.config();
 
@@ -29,40 +27,11 @@ client.on('messageCreate', (message) => {
       .then(() => console.log(`Replied to message "${message.content}"`))
       .catch(console.error);
   }
-
-  // Cowsay
-
+  //cowsay
   if (message.content === 'cowsay') {
-    // React to a message with a unicode emoji
-    message
-      .react('🐱')
-      .then(() => console.log(`Reacted to message "${message.content}"`))
-      .catch(console.error);
-    //reply to message
-
-    let opts: IOptions = {
-      text: 'Hello from Typescript!',
-      //e: 'oo',
-      //f: 'mona-lisa',
-      r: true,
-    };
-
-    let output: string = cowsay.say(opts);
-    console.log(output);
-    message
-      .reply({
-        content: `
-    \`\`\`
-    ${output}
-    \`\`\`
-      `,
-      })
-      .then(() => console.log(`Replied to message "${message.content}"`))
-      .catch((error) => {
-        if (output.length > 2000) {
-          message.reply(cowsay.say({ text: 'Bye, bye!' }));
-        }
-      });
+    message.react('🐱').then(console.log).catch(console.error);
+    const output = cowsay();
+    message.reply(output).then(console.log).catch(console.error);
   }
 });
 
