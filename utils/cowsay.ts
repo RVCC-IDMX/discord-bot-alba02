@@ -1,10 +1,15 @@
 import * as cowsay from 'cowsay';
 import { IOptions } from 'cowsay'; // optional
 import getRandomInt from './random';
+import quotes from './quotes.json';
+
 // Cowsay function
 export default function () {
+  //create variable to represent the quotes and to place them in random generator
+  const random = getRandomInt(0, quotes.length);
   let opts: IOptions = {
-    text: 'Hello from Typescript!',
+    //This calls the random quotes then random author
+    text: `${quotes[random].quote} - ${quotes[random].author}`,
     r: true,
   };
 
