@@ -1,7 +1,6 @@
-//declare module 'cowsay';
 import * as cowsay from 'cowsay';
 import { IOptions } from 'cowsay'; // optional
-
+import getRandomInt from './random';
 // Cowsay function
 export default function () {
   let opts: IOptions = {
