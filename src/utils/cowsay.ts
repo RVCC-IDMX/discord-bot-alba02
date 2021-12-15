@@ -30,7 +30,7 @@ export default function (specialCow: string = 'any') {
   // Not random cow, specialcow
 
   if (output.length > 2000) {
-    cowsay.say({ text: 'Bye, bye!' });
+    output = 'I am sorry, that is too large.';
   }
   return `
     \`\`\`

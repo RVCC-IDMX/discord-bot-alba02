@@ -1,6 +1,6 @@
 import DiscordJS, { Intents, Message } from 'discord.js';
 import dotenv from 'dotenv';
-import cowsay from './utils/cowsay';
+import cowsay from '/utils/cowsay';
 
 dotenv.config();
 const prefix = process.env.PREFIX || '#am';
