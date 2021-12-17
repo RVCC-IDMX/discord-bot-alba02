@@ -1,9 +1,10 @@
 import DiscordJS, { Intents, Message } from 'discord.js';
 import dotenv from 'dotenv';
 import cowsay from './utils/cowsay';
+import 'dotenv/config';
+//dotenv.config();
 
-dotenv.config();
-const prefix = process.env.PREFIX || '#am';
+/*const prefix = process.env.PREFIX || '#am';
 const CHANNELS = process.env.CHANNELS || null;
 
 if (!CHANNELS) {
@@ -13,16 +14,21 @@ if (!CHANNELS) {
 
 const channels = CHANNELS.split(',');
 console.table(channels);
+*/
 
 const client = new DiscordJS.Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 
 client.on('ready', () => {
+  let handler = require('./command-handler');
+  if (handler.default) handler = handler.default;
+
+  handler(client);
   console.log('The bot is ready');
 });
 
-client.on('messageCreate', (message) => {
+/*client.on('messageCreate', (message) => {
   //prefix code
   if (!channels.includes(message.channel.id)) return;
   if (!message.content.startsWith(prefix)) {
@@ -66,5 +72,5 @@ client.on('messageCreate', (message) => {
       .catch(console.error);
   }
 });
-
+*/
 client.login(process.env.TOKEN);
