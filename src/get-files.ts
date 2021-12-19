@@ -15,6 +15,7 @@ const getFiles = (src: string, dir: string, suffix: string): string[] => {
       ];
     } else if (file.name.endsWith(suffix)) {
       commandFiles.push(`./${dir}/${file.name}`.replace(suffix, ''));
+      // console.log(file.name);
     }
   });
 

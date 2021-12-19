@@ -29,8 +29,6 @@ export default (client: Client) => {
     [key: string]: any;
   };
 
-  const suffix = '.ts';
-
   const commandFiles = getFiles(src, './commands', suffix);
   console.log(commandFiles);
 

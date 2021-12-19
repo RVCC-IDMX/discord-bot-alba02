@@ -21,7 +21,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 exports.default = (client) => {
     const commands = {};
-    const suffix = '.ts';
     const commandFiles = (0, get_files_1.default)(src, './commands', suffix);
     console.log(commandFiles);
     console.log(commands);
